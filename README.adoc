@@ -5,7 +5,7 @@ I don't recommend using this method to read buttons unless you absolutely must. 
 
 The proper wiring is in the image below.
 
-![alt text](https://github.com/GoodMobiley/GMs_Button_Palooza/blob/main/GMs_Button_Palooza.png)
+![alt text](https://github.com/goodmobiley/gms_button_palooza/blob/main/gms_button_palooza.png)
 
 == License ==
 
