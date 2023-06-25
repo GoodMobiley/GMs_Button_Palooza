@@ -45,7 +45,7 @@ GM::ButtonStates GM::ButtonBunch::getButtonStates(){
             }
         }
 
-        if (closestDist > 2)
+        if (closestDist > 4)
             buttonStates = prevButtonStates;    //If voltage not recognized, set state to previous state (to prevent flicker)
         else
             buttonStates = closestIndex+1;  //Now shimmy through that index value because each bit in it represents a button state
