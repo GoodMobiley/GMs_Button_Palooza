@@ -1,8 +1,8 @@
 #include "GMs_Button_Palooza.h"
 
-uint32_t resistances[3] = {1000,2000,10000};	//Resistances used by each button
+uint32_t resistances[3] = {1000,2000,5000};	//Resistances used by each button
 
-GM::ButtonBunch buttons{A0, 3, 10000, resistances};	//declare the buttons with the resistances from above
+GM::ButtonBunch buttons{A0, 3, 1000, resistances};	//declare the buttons with the resistances from above
 
 void setup()
 {
