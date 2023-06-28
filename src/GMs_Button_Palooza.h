@@ -4,34 +4,42 @@
 #define GM_BUTTON_PALOOZA_H
 namespace GM
 {
-    class ButtonStates{
+    class ButtonState{
         public:
-         const uint8_t length;
+         bool getButton();
+         bool getButtonDown();
+         bool getButtonUp();
 
-                ButtonStates(uint8_t numberOfButtons);
-         bool&  operator[](uint16_t index);
-         void   operator=(ButtonStates& newButtonStates);
-         void   operator=(bool newButtonStates);
-         void   operator=(uint16_t newButtonStates);
+         void operator=(bool newValue);
+         void operator=(ButtonState newState);
 
         private:
-         bool* const buttonStates;
+         uint8_t buttonState;
+    };
+
+    class Button{
+        public:
+                          Button(uint16_t pin);
+         GM::ButtonState& getButtonState();
+
+        private:
+         const uint16_t pin;
     };
 
     class ButtonBunch{
         public:
          const uint8_t      length;
          
-                            ButtonBunch(uint16_t pin, uint8_t numberOfButtons, uint32_t groundResistance, const uint32_t* resistances);
-         GM::ButtonStates   getButtonStates();
+                                ButtonBunch(uint16_t pin, uint8_t numberOfButtons, uint32_t groundResistance, const uint32_t* resistances);
+         GM::ButtonState* const getButtonStates();
 
         private:
          const uint16_t         pin, numberOfVoltages;
-         const uint16_t* const  voltages;
+         const  int16_t* const  voltages;
 
-         GM::ButtonStates prevButtonStates;
+         GM::ButtonState* const prevButtonStates;
          
-         const uint16_t* const voltagesInit(uint8_t numberOfButtons, uint32_t groundResistance, const uint32_t* resistances);
+         const int16_t* const voltagesInit(uint8_t numberOfButtons, uint32_t groundResistance, const uint32_t* resistances);
     };
 } // namespace GM
 #endif

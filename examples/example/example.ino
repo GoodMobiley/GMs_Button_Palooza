@@ -1,8 +1,11 @@
 #include "GMs_Button_Palooza.h"
 
-uint32_t resistances[3] = {1000,2000,5000};	//Resistances used by each button
+GM::Button button{13};	//declare a button at pin 13
 
-GM::ButtonBunch buttons{A0, 3, 1000, resistances};	//declare the buttons with the resistances from above
+uint32_t resistances[3] = {1000,2000,5000};	//Resistances used by each button
+GM::ButtonBunch buttons{A0, 3, 1000, resistances};	//declare the buttons at pin A0 with the resistances from above
+
+
 
 void setup()
 {
@@ -11,10 +14,20 @@ void setup()
 
 void loop()
 {
-	GM::ButtonStates buttonStates = buttons.getButtonStates();	//Nab those button values from the button bunch
+	GM::ButtonState* const buttonStates = buttons.getButtonStates();	//Nab those button values from the button bunch
+	GM::ButtonState& buttonState = button.getButtonState();
 
-	for (uint16_t i = 0; i < buttonStates.length; i++){		//for each button
-		Serial.print(String(buttonStates[i]) + " | ");		//print out the button state
+	Serial.println("Button Bunch                |Button");
+
+	for (uint16_t i = 0; i < 3; i++){		//for each button
+		Serial.print(String(buttonStates[i].getButton()) + "," +	//print out the button state
+		 			 String(buttonStates[i].getButtonDown()) + "," +
+					 String(buttonStates[i].getButtonUp()) + " | ");		
 	}
-	Serial.println(analogRead(A0));	//now print out the mapped voltage
+	Serial.println(String(analogRead(A0)) + " | " + 	//now print out the mapped voltage
+			       String(buttonState.getButton()) + "," + 
+				   String(buttonState.getButtonDown()) + "," + 
+				   String(buttonState.getButtonUp()));	//and the lone button state
+
+	delay(100);
 }
