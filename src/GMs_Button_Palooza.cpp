@@ -50,7 +50,7 @@ GM::ButtonState* const GM::ButtonBunch::getButtonStates(){
     static GM::ButtonState* const buttonStates = new GM::ButtonState[length]; //Creates static ButtonState class to send
 
     int16_t voltage = analogRead(pin);             //Get the mapped voltage
-    if (voltage){                                   //if you're getting something from this pin
+    if (voltage > 5){                                   //if you're getting something from this pin
         uint16_t closestIndex;
         int16_t  closestDist=1024;    //declare some handy vars
 
