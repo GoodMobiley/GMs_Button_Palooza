@@ -31,7 +31,6 @@ GM::Button::Button(uint16_t pin):   //initialize constant
 { pinMode(pin, INPUT_PULLUP); }     //and set pin mode
 
 GM::ButtonState& GM::Button::getButtonState(){  //set value in button state
-    static GM::ButtonState buttonState;
     buttonState = !digitalRead(pin); //and return it to call as reference
     return buttonState;
 }
@@ -43,12 +42,10 @@ GM::ButtonState& GM::Button::getButtonState(){  //set value in button state
 GM::ButtonBunch::ButtonBunch(uint16_t pin, uint8_t numberOfButtons, uint32_t groundResistance, const uint32_t* resistances):   //Initilize constants and set pin mode, that's all
     length(numberOfButtons),            pin(pin),   
     numberOfVoltages(pow(2,length)-1),     voltages(voltagesInit(length, groundResistance, resistances)),
-    prevButtonStates{new GM::ButtonState[length]}
+    buttonStates{new GM::ButtonState[length]}, prevButtonStates{new GM::ButtonState[length]}
 { pinMode(pin, INPUT); }
 
 GM::ButtonState* const GM::ButtonBunch::getButtonStates(){
-    static GM::ButtonState* const buttonStates = new GM::ButtonState[length]; //Creates static ButtonState class to send
-
     int16_t voltage = analogRead(pin);             //Get the mapped voltage
     if (voltage > 5){                                   //if you're getting something from this pin
         uint16_t closestIndex;

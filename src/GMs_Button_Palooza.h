@@ -24,6 +24,7 @@ namespace GM
 
         private:
          const uint16_t pin;
+         GM::ButtonState buttonState;
     };
 
     class ButtonBunch{
@@ -37,7 +38,7 @@ namespace GM
          const uint16_t         pin, numberOfVoltages;
          const  int16_t* const  voltages;
 
-         GM::ButtonState* const prevButtonStates;
+         GM::ButtonState* const buttonStates,* const prevButtonStates;
          
          const int16_t* const voltagesInit(uint8_t numberOfButtons, uint32_t groundResistance, const uint32_t* resistances);
     };
