@@ -8,7 +8,7 @@ I don't recommend using this method to read buttons unless you absolutely must. 
 
 ### The compatible schematic for the ButtonBunch class is in the image below.
 ![alt text](https://github.com/GoodMobiley/GMs_Button_Palooza/blob/main/GMs_Button_Palooza_ButtonBunch.png)
-Note: garbage in garbage out. the better your connections the better the result so solder your splices and all that good stuff.
+Note: Garbage in garbage out.  The better your connections the better the result so solder your splices and all that good stuff.
 
 ## License
 
